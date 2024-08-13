@@ -72,7 +72,9 @@
         }
 
         .purple-border {
+            display: inline-block;
             border-top: 1.5pt solid #9900ff;
+            padding-top: 2px;
         }
 
         input[type="text"] {
@@ -117,17 +119,15 @@
         <h2>Email Signature Generator</h2>
         <form id="signatureForm">
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="">
+            <input type="text" id="firstName" name="firstName" value="Vu">
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="" required>
+            <input type="text" id="lastName" name="lastName" value="Nguyen" required>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" value="" required>
+            <input type="text" id="title" name="title" value="Solution Engineer II" required>
             <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone" value="" required>
+            <input type="text" id="phone" name="phone" value="400-123-4567" required>
             <button type="submit">Generate Signature</button>
         </form>
-
-
     </div>
     <div class="signature-preview" id="signaturePreview">
         <!-- Signature preview will be generated here -->
@@ -157,17 +157,17 @@
                 <span class="position">${title}</span>
             </td>
         </tr>
-        <tr>
-            <td class="contact purple-border">
+        <tr >
+            <td class="purple-border" >
                  <span class="contact">${phone} | <span class="email">${email}</span></span>
             </td>
         </tr>
         <tr>
             <td class="header">
                 <span class="icons">
-                    <img src="${facebook}" alt="">
-                    <img src="${x}" alt="">
-                    <img src="${linkedIn}" alt="">
+                    <a href="https://www.facebook.com/portxio/" target="_blank"><img src="${facebook}" alt=""></a>
+                    <a href="https://twitter.com/portxio" target="_blank"><img src="${x}" alt=""></a>
+                    <a href="https://www.linkedin.com/company/portx/" target="_blank"> <img src="${linkedIn}" alt=""></a>
                 </span>
             </td>
         </tr>
