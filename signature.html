@@ -31,7 +31,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
             position: absolute;
             bottom: 0;
         }
@@ -72,10 +71,12 @@
         }
 
         .purple-border {
-            display: inline-block;
-            border-top: 1.5pt solid #9900ff;
-            padding-top: 2px;
-        }
+    border-top: 1.5pt solid #9900ff;
+    padding-top: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
 
         input[type="text"] {
             width: 100%;
@@ -129,46 +130,52 @@
             <button type="submit">Generate Signature</button>
         </form>
     </div>
-    <div class="signature-preview" id="signaturePreview">
+    <div class="signature-preview" id="signaturePreview" style="display: none;">
         <!-- Signature preview will be generated here -->
     </div>
     <script>
-        document.getElementById("signatureForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const firstName = document.getElementById("firstName").value;
-            const lastName = document.getElementById("lastName").value;
-            const title = document.getElementById("title").value;
-            const phone = document.getElementById("phone").value;
-            const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@portx.io`;
-            const signatureHtml = `
-    <table>
-        <tr>
-            <td rowspan="3">
-                <a href = "https://portx.io/"> <img src="images/portX.png" alt="" style="width: 97.33px; height: 70.67px;"> </a>
-            </td>
-            <td class="header">
-                <span class="name">${firstName} ${lastName},</span>
-                <span class="position">${title}</span>
-            </td>
-        </tr>
-        <tr >
-            <td class="purple-border" >
-                 <span class="contact">${phone} | <span class="email">${email}</span></span>
-            </td>
-        </tr>
-        <tr>
-            <td class="header">
-                <span class="icons">
-                    <a href="https://www.facebook.com/portxio/" target="_blank"><img src="images/facebook.png" alt=""></a>
-                    <a href="https://twitter.com/portxio" target="_blank"><img src="images/x.png" alt=""></a>
-                    <a href="https://www.linkedin.com/company/portx/" target="_blank"> <img src="images/linkedIn.png" alt=""></a>
-                </span>
-            </td>
-        </tr>
-    </table>`;
+ document.getElementById("signatureForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            document.getElementById("signaturePreview").innerHTML = signatureHtml.trim();
-        });
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const title = document.getElementById("title").value;
+    const phone = document.getElementById("phone").value;
+    const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@portx.io`;
+
+    const signatureHtml = `
+        <table>
+            <tr>
+                <td rowspan="3">
+                    <a href = "https://portx.io/"> <img src="images/portX.png" alt="" style="width: 97.33px; height: 70.67px; padding-right: 2px"> </a>
+                </td>
+                <td class="header">
+                    <span class="name">${firstName} ${lastName},</span>
+                    <span class="position">${title}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="purple-border">
+                    <span class="contact">${phone} | <span class="email">${email}</span></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="header">
+                    <span class="icons">
+                        <a href="https://www.facebook.com/portxio/" target="_blank"><img src="images/facebook.png" alt=""></a>
+                        <a href="https://twitter.com/portxio" target="_blank"><img src="images/x.png" alt=""></a>
+                        <a href="https://www.linkedin.com/company/portx/" target="_blank"> <img src="images/linkedIn.png" alt=""></a>
+                    </span>
+                </td>
+            </tr>
+        </table>`;
+
+    // Update the content and show the signature preview
+    const previewElement = document.getElementById("signaturePreview");
+    previewElement.innerHTML = signatureHtml.trim();
+    previewElement.style.display = "block";  // Show the element
+});
+
     </script>
 </body>
 
