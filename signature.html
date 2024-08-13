@@ -99,7 +99,7 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #02E4A3;
         }
 
         .output {
@@ -172,6 +172,7 @@
 
     // Update the content and show the signature preview
     const previewElement = document.getElementById("signaturePreview");
+    console.log(signatureHtml.trim());
     previewElement.innerHTML = signatureHtml.trim();
     previewElement.style.display = "block";  // Show the element
 });
