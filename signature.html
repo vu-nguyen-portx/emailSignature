@@ -71,12 +71,12 @@
         }
 
         .purple-border {
-    border-top: 1.5pt solid #9900ff;
-    padding-top: 5px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-}
+            border-top: 1.5pt solid #9900ff;
+            padding-top: 5px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         input[type="text"] {
             width: 100%;
@@ -134,25 +134,43 @@
         <!-- Signature preview will be generated here -->
     </div>
     <script>
- document.getElementById("signatureForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+        document.getElementById("signatureForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const title = document.getElementById("title").value;
-    const phone = document.getElementById("phone").value;
-    const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@portx.io`;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const title = document.getElementById("title").value;
+            const phone = document.getElementById("phone").value;
+            const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@portx.io`;
+            const shouldLineBreak = (() => {
+                const l = firstName.length + lastName.length + title.length
+                if (l > 30) return true
+                else return false
+            })()
 
-    const signatureHtml = `
+            const topLine = (() => {
+                if (shouldLineBreak) {
+                    return `<td class="header">
+                    <span class="name">${firstName} ${lastName},</span><br>
+                    <span class="position">${title}</span>
+                </td>`
+                    console.log(firstName, lastName, title, shouldLineBreak)
+                }
+
+                return `<td class="header">
+                    <span class="name">${firstName} ${lastName},</span>
+                    <span class="position">${title}</span>
+                </td>`
+            })()
+
+
+            const signatureHtml = `
         <table>
             <tr>
                 <td rowspan="3">
                     <a href = "https://portx.io/"> <img src="images/portX.png" alt="" style="width: 97.33px; height: 70.67px; padding-right: 2px"> </a>
                 </td>
-                <td class="header">
-                    <span class="name">${firstName} ${lastName},</span>
-                    <span class="position">${title}</span>
-                </td>
+                ${topLine}
             </tr>
             <tr>
                 <td class="purple-border">
@@ -170,12 +188,12 @@
             </tr>
         </table>`;
 
-    // Update the content and show the signature preview
-    const previewElement = document.getElementById("signaturePreview");
-    console.log(signatureHtml.trim());
-    previewElement.innerHTML = signatureHtml.trim();
-    previewElement.style.display = "block";  // Show the element
-});
+            // Update the content and show the signature preview
+            const previewElement = document.getElementById("signaturePreview");
+            console.log(signatureHtml.trim());
+            previewElement.innerHTML = signatureHtml.trim();
+            previewElement.style.display = "block";  // Show the element
+        });
 
     </script>
 </body>
